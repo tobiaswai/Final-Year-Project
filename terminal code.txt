@@ -1,0 +1,6 @@
+active environment:
+source venv/bin/activate
+
+runserver:
+cd fyp
+python manage.py runserver
