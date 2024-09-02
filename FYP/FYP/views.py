@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from profiles.models import Profile
 
 def login_view(request):
-    return render(request, 'main.html', {})
+    return render(request, 'login.html', {})
 
 def logout_view(request):
     logout(request)
@@ -23,21 +23,26 @@ def home_view(request):
 def find_user_view(request):
     if is_ajax(request):
         photo = request.POST.get('photo')
-        _, str_img = photo. split(';base64')
+        _, str_img = photo.split(';base64')
+
+        # print(photo)
         decoded_file = base64.b64decode(str_img)
+        print(decoded_file)
 
         x = Log()
-        x.photo = ContentFile(decoded_file, 'upload.png')
+        x.photo.save('upload.png', ContentFile(decoded_file))
         x.save()
-        
-        res = classify_face(x.photo.path)
-        user_exists = User.objects.filter(username=res).exists()
-        if user_exists:
-            user = User.objects.get(username=res)
-            profile = Profile.objects.get(user=user)
-            x.profile = profile
-            x.save()
 
-            login(request, user)
-            return JsonResponse({'success': True})
-        return JsonResponse({'success': True})
+        res = classify_face(x.photo.path)
+        if res:
+            user_exists = User.objects.filter(username=res).exists()
+            if user_exists:
+                user = User.objects.get(username=res)
+                profile = Profile.objects.get(user=user)
+                x.profile = profile
+                x.save()
+
+                login(request, user)
+                return JsonResponse({'success': True})
+        return JsonResponse({'success': False})
+    

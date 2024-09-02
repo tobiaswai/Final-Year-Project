@@ -1,4 +1,3 @@
-
 import face_recognition as fr
 import numpy as np
 from profiles.models import Profile
