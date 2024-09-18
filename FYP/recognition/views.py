@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from recognition.forms import FaceRecognitionform
-from recognition.machinelearning import pipeline_model
+from FYP.recognition.machinelearning import pipeline_model
 from django.conf import settings
 from recognition.models import FaceRecognition
 import os

@@ -56,6 +56,11 @@ def pipeline_model(path):
                 cv2.putText(image,text_face,(startx,starty),cv2.FONT_HERSHEY_PLAIN,2,(255,255,255),2)
                 cv2.putText(image,text_emotion,(startx,starty),cv2.FONT_HERSHEY_PLAIN,2,(255,255,255),2)
 
+
+                cv2.imwrite(os.path.join(settings.MEDIA_ROOT,'ml_output/process.jpg'),image)
+                cv2.imwrite(os.path.join(settings.MEDIA_ROOT,'ml_output/ roi_{}.jpg'.format(count)),face_roi)
+
+
                 machinelearning_results['count'].append(count)
                 machinelearning_results['face_detect_score'].append(confidence)
                 machinelearning_results['face_name'].append(face_name)
