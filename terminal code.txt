@@ -3,4 +3,4 @@ source venv/bin/activate
 
 runserver:
 cd fyp
-python manage.py runserver
+python3 manage.py runserver
