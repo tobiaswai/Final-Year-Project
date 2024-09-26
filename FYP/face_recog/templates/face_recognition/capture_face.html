@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Capture Face</title>
+</head>
+<body>
+    <h1>Capture Face</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="face_name">Enter Your Name:</label>
+        <input type="text" id="face_name" name="face_name" required>
+        <button type="submit">Capture Face</button>
+    </form>
+</body>
+</html>

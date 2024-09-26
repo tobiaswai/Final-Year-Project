@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'logs',
     'profiles',
+    'face_recog',
 ]
 
 LOGIN_URL = 'login/'
